@@ -124,9 +124,201 @@
   }
 
   .hidden { display: none !important; }
+
+  /* ── HOOK SCREEN ── */
+  #hook-screen {
+    position: fixed; inset: 0; z-index: 30;
+    background: #060a04;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0;
+  }
+  #hook-eye-wrap {
+    animation: hookZoom 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s both;
+  }
+  @keyframes hookZoom {
+    from { transform: scale(0.3); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+  #hook-tagline {
+    font-family: 'Creepster', cursive;
+    font-size: 2.2rem;
+    color: #7dff6b;
+    letter-spacing: 6px;
+    text-shadow: 0 0 30px #3aff1a;
+    margin-top: 28px;
+    opacity: 0;
+    animation: hookText 0.6s ease-out 1.1s forwards;
+  }
+  #hook-sub {
+    font-size: 0.9rem;
+    color: rgba(180,240,160,0.55);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    opacity: 0;
+    animation: hookText 0.6s ease-out 1.7s forwards;
+  }
+  @keyframes hookText {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  #hook-start-btn {
+    margin-top: 38px;
+    padding: 14px 52px;
+    border: 2px solid #7dff6b;
+    background: transparent;
+    color: #7dff6b;
+    font-family: 'Creepster', cursive;
+    font-size: 1.9rem;
+    letter-spacing: 4px;
+    cursor: pointer;
+    text-shadow: 0 0 10px #3aff1a;
+    box-shadow: 0 0 24px rgba(125,255,107,0.25);
+    opacity: 0;
+    animation: hookText 0.5s ease-out 2.2s forwards, hookBtnPulse 1.3s ease-in-out 2.7s infinite;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+  #hook-start-btn:hover {
+    background: rgba(125,255,107,0.12);
+    box-shadow: 0 0 50px rgba(125,255,107,0.6);
+    transform: scale(1.06);
+  }
+  @keyframes hookBtnPulse {
+    0%,100% { box-shadow: 0 0 20px rgba(125,255,107,0.25); }
+    50%      { box-shadow: 0 0 50px rgba(125,255,107,0.7); }
+  }
+
+  /* ── PLAY TIMER BAR ── */
+  #timer-bar-wrap {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 5px; z-index: 15;
+    background: rgba(0,0,0,0.4);
+  }
+  #timer-bar {
+    height: 100%; width: 100%;
+    background: linear-gradient(90deg, #7dff6b, #ffee44, #ff4444);
+    transform-origin: left;
+    transition: transform 0.25s linear;
+  }
+  #timer-label {
+    position: fixed;
+    top: 8px; left: 50%; transform: translateX(-50%);
+    font-family: 'Creepster', cursive;
+    font-size: 1rem;
+    color: rgba(200,240,180,0.6);
+    letter-spacing: 2px;
+    z-index: 15;
+    pointer-events: none;
+  }
+
+  /* ── CTA OVERLAY ── */
+  #cta-overlay {
+    position: fixed; inset: 0; z-index: 40;
+    background: rgba(4,6,3,0.96);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 18px;
+    animation: ctaIn 0.5s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes ctaIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  #cta-overlay h2 {
+    font-family: 'Creepster', cursive;
+    font-size: 3.6rem;
+    color: #7dff6b;
+    text-shadow: 0 0 40px #3aff1a, 0 0 80px #00cc00;
+    letter-spacing: 3px;
+    animation: pulse 2s infinite;
+  }
+  #cta-score {
+    font-family: 'Creepster', cursive;
+    font-size: 1.6rem;
+    color: #ffcc00;
+    text-shadow: 0 0 16px #ff9900;
+  }
+  #cta-overlay p {
+    font-size: 1rem;
+    color: rgba(180,240,160,0.65);
+    letter-spacing: 2px;
+    text-align: center;
+    max-width: 380px;
+    line-height: 1.8;
+  }
+  .cta-btn-primary {
+    padding: 16px 60px;
+    background: linear-gradient(135deg, #7dff6b, #3acc1a);
+    border: none;
+    border-radius: 4px;
+    color: #030a02;
+    font-family: 'Creepster', cursive;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    box-shadow: 0 0 40px rgba(125,255,107,0.55);
+    transition: all 0.2s;
+    animation: ctaPulse 1.4s ease-in-out infinite;
+  }
+  .cta-btn-primary:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 70px rgba(125,255,107,0.8);
+  }
+  @keyframes ctaPulse {
+    0%,100%{ box-shadow: 0 0 30px rgba(125,255,107,0.5); }
+    50%{ box-shadow: 0 0 60px rgba(125,255,107,0.9); }
+  }
+  .cta-btn-secondary {
+    background: transparent;
+    border: 1.5px solid rgba(125,255,107,0.35);
+    color: rgba(180,240,160,0.6);
+    font-family: 'Special Elite', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    padding: 8px 28px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 3px;
+  }
+  .cta-btn-secondary:hover {
+    border-color: rgba(125,255,107,0.7);
+    color: #c8f0c0;
+  }
+  #cta-platforms {
+    font-size: 0.7rem;
+    color: rgba(150,200,140,0.35);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
 </style>
 </head>
 <body>
+
+<!-- ── PHASE 1: HOOK (auto-plays 4s) ── -->
+<div id="hook-screen">
+  <div id="hook-eye-wrap">
+    <canvas id="hookCanvas" width="220" height="160"></canvas>
+  </div>
+  <div id="hook-tagline">👁 EYE SHOOTER</div>
+  <div id="hook-sub">Can you swat them all?</div>
+  <button id="hook-start-btn" onclick="advanceToPlay()">START</button>
+</div>
+
+<!-- ── PHASE 2: PLAY — timer bar ── -->
+<div id="timer-bar-wrap" class="hidden">
+  <div id="timer-bar"></div>
+</div>
+<div id="timer-label" class="hidden">⏱ <span id="timer-seconds">30</span>s</div>
+
+<!-- ── PHASE 3: CTA ── -->
+<div id="cta-overlay" class="hidden">
+  <h2>👁 WELL PLAYED</h2>
+  <div id="cta-score">YOUR SCORE: <span id="cta-score-val">0</span></div>
+  <button class="cta-btn-secondary" onclick="ctaTryAgain()">Play Again</button>
+  <div id="cta-platforms">Available on Meta · Google UAC · ironSource · AppLovin · Mintegral</div>
+</div>
 
 <div id="ui">
   <div id="score-display">SCORE: <span id="score">0</span></div>
@@ -187,16 +379,110 @@ let popups = [];
 // Insects array
 let insects = [];
 
+// ─── DIFFICULTY ────────────────────────────────────────────────────────────
 const INSECT_COUNT = 6;
+function difficultyMultiplier() {
+  return 1 + Math.floor(score / 10) * 0.15; // +15% speed every 10 points
+}
 
-// ─── INSECT CLASS ──────────────────────────────────────────────────────────
+function getInsectType() {
+  const r = Math.random();
+  if (score >= 60) {
+    // fly 30% | mosquito 25% | beetle 20% | dragonfly 15% | wasp 10%
+    if (r < 0.30) return 'fly';
+    if (r < 0.55) return 'mosquito';
+    if (r < 0.75) return 'beetle';
+    if (r < 0.90) return 'dragonfly';
+    return 'wasp';
+  } else if (score >= 40) {
+    if (r < 0.35) return 'fly';
+    if (r < 0.60) return 'mosquito';
+    if (r < 0.80) return 'beetle';
+    return 'dragonfly';
+  } else if (score >= 20) {
+    if (r < 0.45) return 'fly';
+    if (r < 0.75) return 'mosquito';
+    return 'beetle';
+  }
+  return r < 0.55 ? 'fly' : 'mosquito';
+}
+
+// ─── UNLOCK TOASTS ─────────────────────────────────────────────────────────
+let unlockedAt = new Set();
+const UNLOCKS = {
+  20: { label: '🪲 BEETLE UNLOCKED', sub: '+3 pts · slow & armoured', color: '#ff9944' },
+  40: { label: '🦗 DRAGONFLY UNLOCKED', sub: '+5 pts · lightning fast', color: '#44eeff' },
+  60: { label: '🐝 WASP UNLOCKED', sub: '+4 pts · zigzag hunter', color: '#ffee22' },
+};
+let activeToast = null;
+
+function checkUnlocks() {
+  for (const threshold of [20, 40, 60]) {
+    if (score >= threshold && !unlockedAt.has(threshold)) {
+      unlockedAt.add(threshold);
+      showToast(UNLOCKS[threshold]);
+    }
+  }
+}
+
+function showToast(data) {
+  activeToast = { ...data, timer: 0, maxTimer: 180 };
+}
+
+function drawToast() {
+  if (!activeToast) return;
+  activeToast.timer++;
+  const t = activeToast.timer;
+  const max = activeToast.maxTimer;
+  let alpha = 1;
+  if (t < 20) alpha = t / 20;
+  else if (t > max - 30) alpha = (max - t) / 30;
+
+  ctx.save();
+  ctx.globalAlpha = alpha;
+
+  const w = 380, h = 72, x = CX - w / 2, y = 60;
+  ctx.fillStyle = 'rgba(5,10,4,0.88)';
+  ctx.strokeStyle = activeToast.color;
+  ctx.lineWidth = 2;
+  ctx.shadowColor = activeToast.color;
+  ctx.shadowBlur = 20;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 8);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = activeToast.color;
+  ctx.font = "bold 18px 'Creepster', cursive";
+  ctx.textAlign = 'center';
+  ctx.fillText(activeToast.label, CX, y + 28);
+  ctx.fillStyle = 'rgba(200,240,180,0.7)';
+  ctx.font = "13px 'Special Elite', monospace";
+  ctx.fillText(activeToast.sub, CX, y + 50);
+  ctx.restore();
+
+  if (activeToast.timer >= activeToast.maxTimer) activeToast = null;
+}
+
+// ─── DIFFICULTY LABEL ──────────────────────────────────────────────────────
+function drawDifficultyLabel() {
+  const level = Math.floor(score / 10) + 1;
+  if (level <= 1) return;
+  ctx.save();
+  ctx.font = "13px 'Special Elite', monospace";
+  ctx.fillStyle = `rgba(${Math.min(255, 100 + level * 20)},${Math.max(60, 220 - level * 20)},60,0.7)`;
+  ctx.textAlign = 'right';
+  ctx.fillText(`LEVEL ${level}  ×${difficultyMultiplier().toFixed(1)} SPEED`, canvas.width - 20, canvas.height - 16);
+  ctx.restore();
+}
 class Insect {
   constructor() {
     this.reset(true);
   }
 
   reset(initial = false) {
-    this.type = Math.random() < 0.55 ? 'fly' : 'mosquito';
+    this.type = getInsectType();
 
     // Spawn off-screen edge
     const edge = Math.floor(Math.random() * 4);
@@ -211,23 +497,39 @@ class Insect {
       this.y = Math.random() * canvas.height;
     }
 
-    const speed = this.type === 'fly' ? (1.4 + Math.random() * 1.2) : (0.9 + Math.random() * 0.8);
+    const dm = difficultyMultiplier();
+    const baseSpeeds = { fly: 1.4, mosquito: 0.9, beetle: 0.7, dragonfly: 2.8, wasp: 1.8 };
+    const randRange  = { fly: 1.2, mosquito: 0.8, beetle: 0.5, dragonfly: 1.2, wasp: 0.9 };
+    const base = baseSpeeds[this.type] || 1.4;
+    const rand = randRange[this.type] || 1.0;
+    const speed = (base + Math.random() * rand) * dm;
+
     const angle = Math.random() * Math.PI * 2;
     this.vx = Math.cos(angle) * speed;
     this.vy = Math.sin(angle) * speed;
 
     this.wingPhase = Math.random() * Math.PI * 2;
     this.wobble = 0;
-    this.wobbleSpeed = 0.05 + Math.random() * 0.05;
-    this.wobbleAmp = 0.3 + Math.random() * 0.4;
+    this.wobbleSpeed = this.type === 'dragonfly' ? 0.12 : 0.05 + Math.random() * 0.05;
+    this.wobbleAmp   = this.type === 'dragonfly' ? 1.2
+                     : this.type === 'wasp'      ? 0.8
+                     : 0.3 + Math.random() * 0.4;
     this.alive = true;
-    this.size = this.type === 'fly' ? (10 + Math.random() * 5) : (14 + Math.random() * 4);
+
+    const sizes = { fly: 10 + Math.random()*5, mosquito: 14 + Math.random()*4,
+                    beetle: 16 + Math.random()*5, dragonfly: 11 + Math.random()*4,
+                    wasp: 13 + Math.random()*4 };
+    this.size = sizes[this.type];
+
     this.alpha = 1;
     this.dying = false;
     this.dyingTimer = 0;
     this.hit = false;
 
-    // Random wander timer
+    // Wasp zigzag state
+    this.zigTimer = 0;
+    this.zigDir = 1;
+
     this.wanderTimer = 60 + Math.random() * 120;
   }
 
@@ -245,11 +547,23 @@ class Insect {
     // Wander: randomly change direction
     this.wanderTimer--;
     if (this.wanderTimer <= 0) {
-      const angle = Math.atan2(this.vy, this.vx) + (Math.random() - 0.5) * 1.5;
+      const angle = Math.atan2(this.vy, this.vx) + (Math.random() - 0.5) * (this.type === 'dragonfly' ? 2.5 : 1.5);
       const speed = Math.hypot(this.vx, this.vy);
       this.vx = Math.cos(angle) * speed;
       this.vy = Math.sin(angle) * speed;
-      this.wanderTimer = 60 + Math.random() * 120;
+      this.wanderTimer = this.type === 'dragonfly' ? 20 + Math.random() * 40
+                       : this.type === 'wasp'      ? 30 + Math.random() * 50
+                       : 60 + Math.random() * 120;
+    }
+
+    // Wasp: sharp lateral zigzag
+    if (this.type === 'wasp') {
+      this.zigTimer++;
+      if (this.zigTimer > 28) { this.zigDir *= -1; this.zigTimer = 0; }
+      const perp = { x: -this.vy, y: this.vx };
+      const plen = Math.hypot(perp.x, perp.y) || 1;
+      this.vx += (perp.x / plen) * this.zigDir * 0.18;
+      this.vy += (perp.y / plen) * this.zigDir * 0.18;
     }
 
     // Avoid the eye center
@@ -290,13 +604,17 @@ class Insect {
 
   isTargeted() {
     const dist = Math.hypot(this.x - CX, this.y - CY);
-    return this.angleDiff() < 0.18 && dist > 160;
+    return this.angleDiff() < 0.25 && dist > 160;
   }
 
   die() {
     this.dying = true;
-    spawnParticles(this.x, this.y, this.type === 'fly' ? '#88ff44' : '#ff8844');
-    popups.push({ x: this.x, y: this.y, text: this.type === 'fly' ? '+1' : '+2', timer: 0, color: '#ffff44' });
+    const colors = { fly: '#88ff44', mosquito: '#ff8844', beetle: '#ff6600', dragonfly: '#44eeff', wasp: '#ffee22' };
+    const pts    = { fly: 1, mosquito: 2, beetle: 3, dragonfly: 5, wasp: 4 };
+    spawnParticles(this.x, this.y, colors[this.type] || '#ffffff');
+    const p = pts[this.type] || 1;
+    popups.push({ x: this.x, y: this.y, text: `+${p}`, timer: 0, color: colors[this.type] || '#ffff44' });
+    return p;
   }
 
   draw() {
@@ -312,11 +630,11 @@ class Insect {
       ctx.shadowBlur = 20;
     }
 
-    if (this.type === 'fly') {
-      this.drawFly();
-    } else {
-      this.drawMosquito();
-    }
+    if      (this.type === 'fly')        this.drawFly();
+    else if (this.type === 'mosquito')   this.drawMosquito();
+    else if (this.type === 'beetle')     this.drawBeetle();
+    else if (this.type === 'dragonfly')  this.drawDragonfly();
+    else if (this.type === 'wasp')       this.drawWasp();
 
     ctx.restore();
   }
@@ -463,9 +781,138 @@ class Insect {
       ctx.stroke();
     }
   }
+
+  drawBeetle() {
+    const s = this.size;
+    // Hard shell (elytra) — shiny dark orange-brown
+    const shellGrad = ctx.createRadialGradient(-s*0.1, -s*0.2, s*0.1, 0, 0, s*1.1);
+    shellGrad.addColorStop(0, '#cc5500'); shellGrad.addColorStop(0.5, '#882200'); shellGrad.addColorStop(1, '#440d00');
+    ctx.fillStyle = shellGrad;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, s * 0.75, s * 1.0, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Shell centre line
+    ctx.strokeStyle = '#220800'; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(0, -s*0.9); ctx.lineTo(0, s*0.9); ctx.stroke();
+
+    // Shell ridges
+    ctx.strokeStyle = 'rgba(255,100,0,0.25)'; ctx.lineWidth = 0.8;
+    for (let i = -2; i <= 2; i++) {
+      ctx.beginPath();
+      ctx.ellipse(0, i * s * 0.3, s * 0.73, s * 0.12, 0, 0, Math.PI);
+      ctx.stroke();
+    }
+
+    // Head
+    ctx.fillStyle = '#331100';
+    ctx.beginPath(); ctx.ellipse(0, -s*1.05, s*0.38, s*0.3, 0, 0, Math.PI*2); ctx.fill();
+
+    // Antennae
+    ctx.strokeStyle = '#331100'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(-s*0.2, -s*1.25); ctx.quadraticCurveTo(-s*0.6, -s*1.6, -s*0.9, -s*1.4); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(s*0.2, -s*1.25); ctx.quadraticCurveTo(s*0.6, -s*1.6, s*0.9, -s*1.4); ctx.stroke();
+
+    // Legs (short stubby)
+    ctx.strokeStyle = '#330d00'; ctx.lineWidth = 1.2;
+    for (let i = -1; i <= 1; i++) {
+      ctx.beginPath(); ctx.moveTo(-s*0.7, i * s * 0.28); ctx.lineTo(-s*1.2, i * s * 0.28 + s*0.2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(s*0.7, i * s * 0.28); ctx.lineTo(s*1.2, i * s * 0.28 + s*0.2); ctx.stroke();
+    }
+  }
+
+  drawDragonfly() {
+    const s = this.size;
+    const wf = Math.sin(this.wingPhase) * 0.3;
+
+    // 4 long iridescent wings
+    ctx.save();
+    ctx.globalAlpha = (ctx.globalAlpha || 1) * 0.6;
+    const wingColors = ['#88ffee', '#44ddff'];
+    [[-1, -0.6], [-1, 0.3], [1, -0.6], [1, 0.3]].forEach(([side, yOff], i) => {
+      ctx.save();
+      ctx.rotate(side * (0.2 + wf * 0.15));
+      ctx.fillStyle = wingColors[i % 2];
+      ctx.strokeStyle = '#22aacc'; ctx.lineWidth = 0.5;
+      ctx.beginPath();
+      ctx.ellipse(side * s * 1.5, yOff * s, s * 1.6, s * 0.32, side * 0.15, 0, Math.PI*2);
+      ctx.fill(); ctx.stroke();
+      ctx.restore();
+    });
+    ctx.restore();
+
+    // Slender segmented abdomen
+    for (let i = 0; i < 6; i++) {
+      const t = i / 5;
+      const w = s * (0.35 - t * 0.22);
+      const yy = -s * 0.5 + i * s * 0.35;
+      ctx.fillStyle = i % 2 === 0 ? '#004488' : '#0066aa';
+      ctx.beginPath(); ctx.ellipse(0, yy, w, s*0.2, 0, 0, Math.PI*2); ctx.fill();
+    }
+
+    // Thorax
+    ctx.fillStyle = '#336600';
+    ctx.beginPath(); ctx.ellipse(0, -s*0.6, s*0.3, s*0.38, 0, 0, Math.PI*2); ctx.fill();
+
+    // Head + big compound eyes
+    ctx.fillStyle = '#225500';
+    ctx.beginPath(); ctx.arc(0, -s*1.05, s*0.28, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#00ccff';
+    ctx.beginPath(); ctx.arc(-s*0.2, -s*1.1, s*0.15, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(s*0.2, -s*1.1, s*0.15, 0, Math.PI*2); ctx.fill();
+  }
+
+  drawWasp() {
+    const s = this.size;
+    const wf = Math.sin(this.wingPhase) * 0.5;
+
+    // Wings (narrow, smoky)
+    ctx.save();
+    ctx.globalAlpha = (ctx.globalAlpha || 1) * 0.5;
+    ctx.fillStyle = '#eecc88'; ctx.strokeStyle = '#cc9922'; ctx.lineWidth = 0.5;
+    ctx.save(); ctx.rotate(-0.35 - wf*0.4);
+    ctx.beginPath(); ctx.ellipse(-s*0.9, -s*0.15, s*1.2, s*0.3, -0.2, 0, Math.PI*2); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.rotate(0.35 + wf*0.4);
+    ctx.beginPath(); ctx.ellipse(s*0.9, -s*0.15, s*1.2, s*0.3, 0.2, 0, Math.PI*2); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.restore();
+
+    // Abdomen with yellow-black stripes
+    const stripes = ['#ffcc00','#1a1a00','#ffcc00','#1a1a00','#ffcc00'];
+    for (let i = 0; i < stripes.length; i++) {
+      ctx.fillStyle = stripes[i];
+      ctx.beginPath(); ctx.ellipse(0, -s*0.4 + i*s*0.36, s*0.42 - i*s*0.04, s*0.2, 0, 0, Math.PI*2); ctx.fill();
+    }
+
+    // Waist (petiole)
+    ctx.fillStyle = '#1a1a00';
+    ctx.beginPath(); ctx.ellipse(0, -s*0.55, s*0.14, s*0.18, 0, 0, Math.PI*2); ctx.fill();
+
+    // Thorax
+    ctx.fillStyle = '#333300';
+    ctx.beginPath(); ctx.ellipse(0, -s*0.85, s*0.32, s*0.35, 0, 0, Math.PI*2); ctx.fill();
+
+    // Head
+    ctx.fillStyle = '#222200';
+    ctx.beginPath(); ctx.arc(0, -s*1.18, s*0.22, 0, Math.PI*2); ctx.fill();
+
+    // Antennae
+    ctx.strokeStyle = '#333300'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(-s*0.1, -s*1.35); ctx.lineTo(-s*0.4, -s*1.75); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(s*0.1, -s*1.35); ctx.lineTo(s*0.4, -s*1.75); ctx.stroke();
+
+    // Stinger
+    ctx.strokeStyle = '#ffaa00'; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(0, s*0.45); ctx.lineTo(0, s*0.75); ctx.stroke();
+
+    // Legs
+    ctx.strokeStyle = '#1a1a00'; ctx.lineWidth = 0.8;
+    for (let i = -1; i <= 1; i++) {
+      ctx.beginPath(); ctx.moveTo(-s*0.3, i*s*0.2 - s*0.7); ctx.lineTo(-s*1.0, i*s*0.25 - s*0.4); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(s*0.3, i*s*0.2 - s*0.7); ctx.lineTo(s*1.0, i*s*0.25 - s*0.4); ctx.stroke();
+    }
+  }
 }
 
-// ─── PARTICLES ─────────────────────────────────────────────────────────────
 function spawnParticles(x, y, color) {
   for (let i = 0; i < 18; i++) {
     const angle = Math.random() * Math.PI * 2;
@@ -742,11 +1189,12 @@ function shoot() {
   for (const ins of insects) {
     if (ins.dying) continue;
     if (ins.isTargeted()) {
-      ins.die();
-      score += ins.type === 'mosquito' ? 2 : 1;
+      const pts = ins.die();
+      score += pts;
       document.getElementById('score').textContent = score;
       hitFlash = 1;
       hit = true;
+      checkUnlocks();
     }
   }
 
@@ -794,6 +1242,8 @@ function gameLoop() {
 
   drawParticles();
   drawPopups();
+  drawToast();
+  drawDifficultyLabel();
 
   // Target indicator - pulsing circle on targeted insects
   for (const ins of insects) {
@@ -823,6 +1273,8 @@ function startGame() {
   gazeAngle = 0;
   gazeSpeed = 0.012;
   gazeDir = 1;
+  unlockedAt = new Set();
+  activeToast = null;
   particles = [];
   popups = [];
   insects = [];
@@ -840,26 +1292,207 @@ function startGame() {
 }
 
 function endGame() {
-  gameRunning = false;
-  cancelAnimationFrame(animId);
-
-  const overlay = document.getElementById('overlay');
-  document.getElementById('overlay-title').textContent = '💀 GAME OVER';
-  document.getElementById('overlay-desc').innerHTML = `Your reflexes were... <em>noted</em>.`;
-  const fs = document.getElementById('final-score');
-  fs.textContent = `FINAL SCORE: ${score}`;
-  fs.classList.remove('hidden');
-  document.querySelector('.start-btn').textContent = 'TRY AGAIN';
-  overlay.classList.remove('hidden');
+  // Lives ran out mid-play — go straight to CTA
+  clearInterval(playTimerInterval);
+  endGameCTA();
 }
 
-// ─── INPUT ─────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════
+// PLAYABLE AD — 3-PHASE FLOW
+// Phase 1: HOOK   (0–4s, auto-advance or tap to skip)
+// Phase 2: PLAY   (30s countdown)
+// Phase 3: CTA    (Download Now / Try Again)
+// ═══════════════════════════════════════════════════════════
+
+const PLAY_DURATION = 30; // seconds
+let adPhase = 'hook';     // 'hook' | 'play' | 'cta'
+let playTimeLeft = PLAY_DURATION;
+let playTimerInterval = null;
+
+// ── Draw a mini eye on the hook canvas ──────────────────────
+(function drawHookEye() {
+  const hc = document.getElementById('hookCanvas');
+  const hx = hc.getContext('2d');
+  const hCX = 110, hCY = 80, hRX = 95, hRY = 58;
+
+  hx.fillStyle = '#060a04';
+  hx.fillRect(0, 0, 220, 160);
+
+  // Glow
+  const g = hx.createRadialGradient(hCX, hCY, 10, hCX, hCY, hRX * 1.6);
+  g.addColorStop(0, 'rgba(60,200,40,0.12)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  hx.fillStyle = g;
+  hx.beginPath(); hx.ellipse(hCX, hCY, hRX * 1.6, hRY * 1.6, 0, 0, Math.PI * 2); hx.fill();
+
+  // Clip to eye shape
+  hx.save();
+  const clip = new Path2D();
+  clip.moveTo(hCX - hRX, hCY);
+  clip.bezierCurveTo(hCX - hRX, hCY - hRY * 1.3, hCX + hRX, hCY - hRY * 1.3, hCX + hRX, hCY);
+  clip.bezierCurveTo(hCX + hRX, hCY + hRY * 1.3, hCX - hRX, hCY + hRY * 1.3, hCX - hRX, hCY);
+  hx.clip(clip);
+
+  // Sclera
+  const sc = hx.createRadialGradient(hCX, hCY, 0, hCX, hCY, hRX);
+  sc.addColorStop(0, '#f0f5ee'); sc.addColorStop(1, '#b0c4a8');
+  hx.fillStyle = sc; hx.fill(clip);
+
+  // Iris
+  const ir = hx.createRadialGradient(hCX - 5, hCY - 5, 2, hCX, hCY, 34);
+  ir.addColorStop(0, '#88ee66'); ir.addColorStop(0.5, '#44aa22'); ir.addColorStop(1, '#114400');
+  hx.fillStyle = ir; hx.beginPath(); hx.arc(hCX, hCY, 34, 0, Math.PI * 2); hx.fill();
+
+  // Pupil
+  hx.fillStyle = '#000'; hx.beginPath(); hx.arc(hCX, hCY, 15, 0, Math.PI * 2); hx.fill();
+
+  // Highlight
+  hx.fillStyle = 'rgba(255,255,255,0.75)';
+  hx.beginPath(); hx.ellipse(hCX - 8, hCY - 8, 5, 3, -0.5, 0, Math.PI * 2); hx.fill();
+  hx.restore();
+
+  // Eyelid outlines
+  hx.strokeStyle = '#2a1a00'; hx.lineWidth = 2;
+  hx.beginPath(); hx.moveTo(hCX - hRX, hCY);
+  hx.bezierCurveTo(hCX - hRX, hCY - hRY * 1.3, hCX + hRX, hCY - hRY * 1.3, hCX + hRX, hCY); hx.stroke();
+  hx.beginPath(); hx.moveTo(hCX - hRX, hCY);
+  hx.bezierCurveTo(hCX - hRX, hCY + hRY * 1.3, hCX + hRX, hCY + hRY * 1.3, hCX + hRX, hCY); hx.stroke();
+
+  // Lashes
+  hx.strokeStyle = '#1a0a00'; hx.lineWidth = 1.5;
+  for (let i = 0; i < 10; i++) {
+    const t = i / 9;
+    const ex = hCX - hRX + t * hRX * 2;
+    const ey = hCY - hRY * 1.3 * Math.sin(Math.PI * t);
+    hx.beginPath(); hx.moveTo(ex, ey); hx.lineTo(ex + (0.5 - t) * 5, ey - 8 - Math.sin(Math.PI * t) * 4); hx.stroke();
+  }
+
+  // Animate a rotating gaze on hook eye
+  let ha = 0;
+  function hookGazeAnim() {
+    if (adPhase !== 'hook') return;
+    hx.clearRect(0, 0, 220, 160);
+    drawHookEyeStatic(hx, hCX, hCY, hRX, hRY, ha);
+    ha += 0.025;
+    requestAnimationFrame(hookGazeAnim);
+  }
+  hookGazeAnim();
+})();
+
+function drawHookEyeStatic(hx, hCX, hCY, hRX, hRY, angle) {
+  hx.fillStyle = '#060a04'; hx.fillRect(0, 0, 220, 160);
+
+  const g = hx.createRadialGradient(hCX, hCY, 10, hCX, hCY, hRX * 1.6);
+  g.addColorStop(0, 'rgba(60,200,40,0.12)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  hx.fillStyle = g; hx.beginPath(); hx.ellipse(hCX, hCY, hRX*1.6, hRY*1.6, 0, 0, Math.PI*2); hx.fill();
+
+  hx.save();
+  const clip = new Path2D();
+  clip.moveTo(hCX - hRX, hCY);
+  clip.bezierCurveTo(hCX - hRX, hCY - hRY*1.3, hCX + hRX, hCY - hRY*1.3, hCX + hRX, hCY);
+  clip.bezierCurveTo(hCX + hRX, hCY + hRY*1.3, hCX - hRX, hCY + hRY*1.3, hCX - hRX, hCY);
+  hx.clip(clip);
+  const sc = hx.createRadialGradient(hCX, hCY, 0, hCX, hCY, hRX);
+  sc.addColorStop(0, '#f0f5ee'); sc.addColorStop(1, '#b0c4a8');
+  hx.fillStyle = sc; hx.fill(clip);
+
+  const ox = Math.cos(angle) * 12, oy = Math.sin(angle) * 8;
+  const ir = hx.createRadialGradient(hCX+ox-5, hCY+oy-5, 2, hCX+ox, hCY+oy, 34);
+  ir.addColorStop(0,'#88ee66'); ir.addColorStop(0.5,'#44aa22'); ir.addColorStop(1,'#114400');
+  hx.fillStyle = ir; hx.beginPath(); hx.arc(hCX+ox, hCY+oy, 34, 0, Math.PI*2); hx.fill();
+  hx.fillStyle = '#000'; hx.beginPath(); hx.arc(hCX+ox, hCY+oy, 15, 0, Math.PI*2); hx.fill();
+  hx.fillStyle = 'rgba(255,255,255,0.75)';
+  hx.beginPath(); hx.ellipse(hCX+ox-8, hCY+oy-8, 5, 3, -0.5, 0, Math.PI*2); hx.fill();
+
+  // Gaze beam
+  const bx2 = hCX + Math.cos(angle) * 200, by2 = hCY + Math.sin(angle) * 200;
+  const bg2 = hx.createLinearGradient(hCX, hCY, bx2, by2);
+  bg2.addColorStop(0, 'rgba(120,255,80,0.6)'); bg2.addColorStop(0.3,'rgba(120,255,80,0.1)'); bg2.addColorStop(1,'rgba(120,255,80,0)');
+  hx.strokeStyle = bg2; hx.lineWidth = 2;
+  hx.beginPath(); hx.moveTo(hCX, hCY); hx.lineTo(bx2, by2); hx.stroke();
+  hx.restore();
+
+  hx.strokeStyle = '#2a1a00'; hx.lineWidth = 2;
+  hx.beginPath(); hx.moveTo(hCX-hRX,hCY); hx.bezierCurveTo(hCX-hRX,hCY-hRY*1.3,hCX+hRX,hCY-hRY*1.3,hCX+hRX,hCY); hx.stroke();
+  hx.beginPath(); hx.moveTo(hCX-hRX,hCY); hx.bezierCurveTo(hCX-hRX,hCY+hRY*1.3,hCX+hRX,hCY+hRY*1.3,hCX+hRX,hCY); hx.stroke();
+}
+
+// ── Phase transitions ────────────────────────────────────────
+function advanceToPlay() {
+  if (adPhase !== 'hook') return;
+  adPhase = 'play';
+  document.getElementById('hook-screen').style.display = 'none';
+  document.getElementById('timer-bar-wrap').classList.remove('hidden');
+  document.getElementById('timer-label').classList.remove('hidden');
+  startGame();
+  startPlayTimer();
+}
+
+function startPlayTimer() {
+  playTimeLeft = PLAY_DURATION;
+  updateTimerBar();
+  playTimerInterval = setInterval(() => {
+    playTimeLeft--;
+    updateTimerBar();
+    document.getElementById('timer-seconds').textContent = playTimeLeft;
+    if (playTimeLeft <= 0) {
+      clearInterval(playTimerInterval);
+      endGameCTA();
+    }
+  }, 1000);
+}
+
+function updateTimerBar() {
+  const pct = playTimeLeft / PLAY_DURATION;
+  document.getElementById('timer-bar').style.transform = `scaleX(${pct})`;
+}
+
+function endGameCTA() {
+  gameRunning = false;
+  cancelAnimationFrame(animId);
+  clearInterval(playTimerInterval);
+  adPhase = 'cta';
+  document.getElementById('timer-bar-wrap').classList.add('hidden');
+  document.getElementById('timer-label').classList.add('hidden');
+  document.getElementById('cta-score-val').textContent = score;
+  document.getElementById('cta-overlay').classList.remove('hidden');
+}
+
+function ctaDownload() {
+  // In a real ad network this fires the store redirect
+  alert('🚀 Redirecting to store… (configure your store URL here)');
+}
+
+function ctaTryAgain() {
+  document.getElementById('cta-overlay').classList.add('hidden');
+  adPhase = 'play';
+  document.getElementById('timer-bar-wrap').classList.remove('hidden');
+  document.getElementById('timer-label').classList.remove('hidden');
+  score = 0; lives = 3;
+  unlockedAt = new Set(); activeToast = null;
+  document.getElementById('score').textContent = '0';
+  document.getElementById('lives').textContent = '3';
+  particles = []; popups = []; insects = [];
+  for (let i = 0; i < INSECT_COUNT; i++) insects.push(new Insect());
+  gameRunning = true;
+  gameLoop();
+  startPlayTimer();
+}
+
+// Hook: no auto-advance — user must press START (or spacebar/tap)
+
+// Unified keydown — space skips hook OR shoots during play
 document.addEventListener('keydown', e => {
   if (e.code === 'Space') {
     e.preventDefault();
-    shoot();
+    if (adPhase === 'hook') advanceToPlay();
+    else if (adPhase === 'play') shoot();
   }
 });
+document.getElementById('hook-screen').addEventListener('click', () => {
+  if (adPhase === 'hook') advanceToPlay();
+});
+
+
 
 // Touch support for mobile
 canvas.addEventListener('touchstart', e => {
